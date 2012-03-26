@@ -25,10 +25,14 @@ class ToggleSymbolCommand(sublime_plugin.TextCommand):
 
     v.replace(edit, sel, text)
 
+
   def run(self, edit):
     v = self.view
     if v.sel()[0].size() == 0:
         v.run_command("expand_selection", {"to": "word"})
+
+    cur_start = v.sel()[0].begin()
+    cur_end = v.sel()[0].end()
 
     for sel in v.sel():
         text = v.substr(sel)
@@ -51,6 +55,9 @@ class ToggleSymbolCommand(sublime_plugin.TextCommand):
               continue
 
         self.replacer(v, edit, sel, text, res)
+
+    v.sel().clear()
+    v.sel().add(Region(cur_start, cur_end))
 
 # 'dude'
 # "dude"
