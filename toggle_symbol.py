@@ -50,7 +50,6 @@ class ToggleSymbolCommand(sublime_plugin.TextCommand):
               #this is a mute point
               continue
 
-        print res
         self.replacer(v, edit, sel, text, res)
 
 # 'dude'
