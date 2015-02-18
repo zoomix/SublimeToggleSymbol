@@ -19,7 +19,9 @@ class ToggleSymbolCommand(sublime_plugin.TextCommand):
     text = res.group(2)
 
     if old_quotes == ':':
-      text = '\'' + text + '\''
+      text = "'" + text + "'"
+    elif old_quotes == "'":
+      text = '"' + text + '"'
     else :
       text = ':' + text
 
